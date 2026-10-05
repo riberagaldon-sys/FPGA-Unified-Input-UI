@@ -1,0 +1,73 @@
+###############################################################################
+# Chapter 7 full LCD UI
+# FPGA: XC7A200T-FBG484-2
+# Top: top_chapter7_ui
+###############################################################################
+
+# 50 MHz system clock
+set_property -dict {PACKAGE_PIN W19 IOSTANDARD LVCMOS33} [get_ports sys_clk]
+create_clock -period 20.000 -name sys_clk [get_ports sys_clk]
+
+# Five-way key
+set_property -dict {PACKAGE_PIN V17  IOSTANDARD LVCMOS33 PULLUP true} [get_ports S1_KEYA]
+set_property -dict {PACKAGE_PIN W17  IOSTANDARD LVCMOS33 PULLUP true} [get_ports S1_KEYB]
+set_property -dict {PACKAGE_PIN U17  IOSTANDARD LVCMOS33 PULLUP true} [get_ports S1_KEYC]
+set_property -dict {PACKAGE_PIN U18  IOSTANDARD LVCMOS33 PULLUP true} [get_ports S1_KEYD]
+set_property -dict {PACKAGE_PIN AA18 IOSTANDARD LVCMOS33 PULLUP true} [get_ports S1_KEYP]
+
+# EC11
+set_property -dict {PACKAGE_PIN AB18 IOSTANDARD LVCMOS33 PULLUP true} [get_ports EC_A]
+set_property -dict {PACKAGE_PIN AA19 IOSTANDARD LVCMOS33 PULLUP true} [get_ports EC_B]
+set_property -dict {PACKAGE_PIN AB20 IOSTANDARD LVCMOS33 PULLUP true} [get_ports EC_KEY]
+
+# PS/2
+set_property -dict {PACKAGE_PIN G15 IOSTANDARD LVCMOS33 PULLUP true} [get_ports PS2_DATA]
+set_property -dict {PACKAGE_PIN G16 IOSTANDARD LVCMOS33 PULLUP true} [get_ports PS2_CLK]
+
+# Capacitive touch
+set_property -dict {PACKAGE_PIN R16 IOSTANDARD LVCMOS33} [get_ports TOUCH_SCL]
+set_property -dict {PACKAGE_PIN E16 IOSTANDARD LVCMOS33} [get_ports TOUCH_SDA]
+set_property -dict {PACKAGE_PIN F15 IOSTANDARD LVCMOS33} [get_ports TOUCH_INT]
+set_property -dict {PACKAGE_PIN K16 IOSTANDARD LVCMOS33} [get_ports TOUCH_RST]
+
+# LCD red
+set_property -dict {PACKAGE_PIN M17 IOSTANDARD LVCMOS33} [get_ports {LCD_R[0]}]
+set_property -dict {PACKAGE_PIN E17 IOSTANDARD LVCMOS33} [get_ports {LCD_R[1]}]
+set_property -dict {PACKAGE_PIN E21 IOSTANDARD LVCMOS33} [get_ports {LCD_R[2]}]
+set_property -dict {PACKAGE_PIN E18 IOSTANDARD LVCMOS33} [get_ports {LCD_R[3]}]
+set_property -dict {PACKAGE_PIN A15 IOSTANDARD LVCMOS33} [get_ports {LCD_R[4]}]
+set_property -dict {PACKAGE_PIN A16 IOSTANDARD LVCMOS33} [get_ports {LCD_R[5]}]
+set_property -dict {PACKAGE_PIN A13 IOSTANDARD LVCMOS33} [get_ports {LCD_R[6]}]
+set_property -dict {PACKAGE_PIN A14 IOSTANDARD LVCMOS33} [get_ports {LCD_R[7]}]
+
+# LCD green
+set_property -dict {PACKAGE_PIN B17 IOSTANDARD LVCMOS33} [get_ports {LCD_G[0]}]
+set_property -dict {PACKAGE_PIN B18 IOSTANDARD LVCMOS33} [get_ports {LCD_G[1]}]
+set_property -dict {PACKAGE_PIN D20 IOSTANDARD LVCMOS33} [get_ports {LCD_G[2]}]
+set_property -dict {PACKAGE_PIN C20 IOSTANDARD LVCMOS33} [get_ports {LCD_G[3]}]
+set_property -dict {PACKAGE_PIN U15 IOSTANDARD LVCMOS33} [get_ports {LCD_G[4]}]
+set_property -dict {PACKAGE_PIN V15 IOSTANDARD LVCMOS33} [get_ports {LCD_G[5]}]
+set_property -dict {PACKAGE_PIN E14 IOSTANDARD LVCMOS33} [get_ports {LCD_G[6]}]
+set_property -dict {PACKAGE_PIN K19 IOSTANDARD LVCMOS33} [get_ports {LCD_G[7]}]
+
+# LCD blue
+set_property -dict {PACKAGE_PIN K21 IOSTANDARD LVCMOS33} [get_ports {LCD_B[0]}]
+set_property -dict {PACKAGE_PIN L21 IOSTANDARD LVCMOS33} [get_ports {LCD_B[1]}]
+set_property -dict {PACKAGE_PIN F16 IOSTANDARD LVCMOS33} [get_ports {LCD_B[2]}]
+set_property -dict {PACKAGE_PIN M22 IOSTANDARD LVCMOS33} [get_ports {LCD_B[3]}]
+set_property -dict {PACKAGE_PIN M18 IOSTANDARD LVCMOS33} [get_ports {LCD_B[4]}]
+set_property -dict {PACKAGE_PIN L18 IOSTANDARD LVCMOS33} [get_ports {LCD_B[5]}]
+set_property -dict {PACKAGE_PIN N18 IOSTANDARD LVCMOS33} [get_ports {LCD_B[6]}]
+set_property -dict {PACKAGE_PIN N19 IOSTANDARD LVCMOS33} [get_ports {LCD_B[7]}]
+
+# LCD control
+set_property -dict {PACKAGE_PIN M15 IOSTANDARD LVCMOS33} [get_ports LCD_CLK]
+set_property -dict {PACKAGE_PIN M16 IOSTANDARD LVCMOS33} [get_ports LCD_HSYNC]
+set_property -dict {PACKAGE_PIN N20 IOSTANDARD LVCMOS33} [get_ports LCD_VSYNC]
+set_property -dict {PACKAGE_PIN L14 IOSTANDARD LVCMOS33} [get_ports LCD_DE]
+set_property -dict {PACKAGE_PIN L15 IOSTANDARD LVCMOS33} [get_ports LCD_BL]
+set_property -dict {PACKAGE_PIN H13 IOSTANDARD LVCMOS33} [get_ports LCD_nRST]
+
+# Moderate LCD output edges
+set_property DRIVE 8 [get_ports {LCD_R[*] LCD_G[*] LCD_B[*] LCD_CLK LCD_HSYNC LCD_VSYNC LCD_DE LCD_BL LCD_nRST}]
+set_property SLEW SLOW [get_ports {LCD_R[*] LCD_G[*] LCD_B[*] LCD_CLK LCD_HSYNC LCD_VSYNC LCD_DE LCD_BL LCD_nRST}]
